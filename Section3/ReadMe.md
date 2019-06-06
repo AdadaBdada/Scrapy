@@ -181,3 +181,73 @@ class QuotesSpider(scrapy.Spider):
 - **allowed_domain** is a list of, obviously, allowed domains. If Scrapy encounters for example, some different domain other than quotes.toscrape.com it will not process it and it will automatically filter it out. Most of the time, you would encounter this if you are crawling every URL on the site.
 - **start_urls** is either by default tuple or you can define it as a list. And it's just, it will be pretty much the first URL that Scrapy will process. You don't actually need to use www. in that part so let's exclude this.
 - **parse** And parse is Scrapy default callback method in the scrapy.Spider or a.k.a. the basic template that Scrapy offers. So this method is called when or for the Request without an explicitly assigned callback. Defining some other name. It has self, obviously, and the response self is because it's in a class right and response because it will get the response object or HTML nodes or HTML source code from this page.
+
+
+
+```
+$ scrapy crawl quotes
+2019-06-05 16:07:26 [scrapy.utils.log] INFO: Scrapy 1.6.0 started (bot: quotes_spider)
+2019-06-05 16:07:26 [scrapy.utils.log] INFO: Versions: lxml 4.3.3.0, libxml2 2.9.9, cssselect 1.0.3, parsel 1.5.1, w3lib 1.20.0, Twisted 19.2.0, Python 3.7.3 (default, Mar 27 2019, 09:23:15) - [Clang 10.0.1 (clang-1001.0.46.3)], pyOpenSSL 19.0.0 (OpenSSL 1.1.1c  28 May 2019), cryptography 2.7, Platform Darwin-18.5.0-x86_64-i386-64bit
+2019-06-05 16:07:26 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'quotes_spider', 'NEWSPIDER_MODULE': 'quotes_spider.spiders', 'SPIDER_MODULES': ['quotes_spider.spiders']}
+2019-06-05 16:07:26 [scrapy.extensions.telnet] INFO: Telnet Password: 66ddb8f9346ac105
+2019-06-05 16:07:26 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2019-06-05 16:07:26 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2019-06-05 16:07:26 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2019-06-05 16:07:26 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2019-06-05 16:07:26 [scrapy.core.engine] INFO: Spider opened
+2019-06-05 16:07:26 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-06-05 16:07:26 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6024
+2019-06-05 16:08:26 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-06-05 16:08:42 [scrapy.downloadermiddlewares.retry] DEBUG: Retrying <GET http://quotes.toscrape.com/> (failed 1 times): TCP connection timed out: 60: Operation timed out.
+2019-06-05 16:09:17 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://quotes.toscrape.com/> (referer: None)
+2019-06-05 16:09:18 [scrapy.core.scraper] DEBUG: Scraped from <200 http://quotes.toscrape.com/>
+{'H1 tag': 'Quotes to Scrape', 'Tags': ['love', 'inspirational', 'life', 'humor', 'books', 'reading', 'friendship', 'friends', 'truth', 'simile']}
+2019-06-05 16:09:18 [scrapy.core.engine] INFO: Closing spider (finished)
+2019-06-05 16:09:18 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/twisted.internet.error.TCPTimedOutError': 1,
+ 'downloader/request_bytes': 436,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 2333,
+ 'downloader/response_count': 1,
+ 'downloader/response_status_count/200': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2019, 6, 5, 20, 9, 18, 51514),
+ 'item_scraped_count': 1,
+ 'log_count/DEBUG': 3,
+ 'log_count/INFO': 10,
+ 'memusage/max': 50376704,
+ 'memusage/startup': 49987584,
+ 'response_received_count': 1,
+ 'retry/count': 1,
+ 'retry/reason_count/twisted.internet.error.TCPTimedOutError': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2019, 6, 5, 20, 7, 26, 474006)}
+2019-06-05 16:09:18 [scrapy.core.engine] INFO: Spider closed (finished)
+
+```
