@@ -38,7 +38,7 @@ really for extracting data points from those pages that are loaded with urllib2 
 
 **LXML - XML and HTML with Python**:
 - it handles or it's used for *scraping data*
-- it's the most feature-rich(功能丰富) Python library for processing both XML and HTML.
+- it's the most feature-rich Python library for processing both XML and HTML.
 - It's also really fast and memory efficient.
 - A fun fact is that Scrapy selectors are built over lxml and for example, Beautiful Soup also supports it as a parser.
 
@@ -49,5 +49,5 @@ The last tool for scraping is called Selenium
 - It's used for web scraping mainly beacuse it's beginner-friendly and if a site uses JavaScript so if a site is heavy on JavaScript which more and more sites are. Selenium is a good option beacuse, once again, it's easy to extract the data if you are a beginner or if JavaScript interactions are very complex. If we have a bunch of get and post requests
 - I use it sometimes solely or in pair with Scrapy and most of the time when I'm using it with Scrapy. I, kind of, try to iterate over once again JavaScript heavy pages and then use Scrapy Selectors to grab the HTML that Selenium produces.
 - Overall, Selenium support is really extensive
-- Bear in mind that(请记住), from my testing, for example, Scraping thousand pages from Wikipedia was 20 times faster in Scrapy than in Selenium
+- Bear in mind that, from my testing, for example, Scraping thousand pages from Wikipedia was 20 times faster in Scrapy than in Selenium
 - Also, on top of that Scrapy consumed a lot less memory and CPU usage was a lot lower with Scrapy than with Selenium
