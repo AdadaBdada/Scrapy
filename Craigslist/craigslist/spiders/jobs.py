@@ -27,6 +27,10 @@ class JobsSpider(scrapy.Spider):
 
         if next_page_url:
             yield scrapy.Request(response.urljoin(next_page_url), callback = self.parse)
-
     def parse_listing(self, response):
-        pass
+        date = response.meta['date']
+        link = response.meta['link']
+        text = response.meta['text']
+
+        compensation = response.xpath('//*[@class="attrgroup"]/span[1]/b/text()').extract_first()
+        type = response.xpath('//*[@class="attrgroup"]/span[2]/b/text()').extract_first()
